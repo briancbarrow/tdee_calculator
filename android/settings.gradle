@@ -1,0 +1,3 @@
+rootProject.name = 'tdee_calculator'
+
+include ':app'
