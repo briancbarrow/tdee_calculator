@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, Dimensions } from 'react-native'
 import {
   Container,
   Header,
@@ -15,11 +15,19 @@ const MyHeader = props => {
     <Header>
       <Left />
       <Body>
-        <Title>{props.headerText}</Title>
+        <Title style={styles.headerStyle}>{props.headerText}</Title>
       </Body>
       <Right />
     </Header>
   )
+}
+
+const deviceWidth = Dimensions.get('window').width - 10
+
+const styles = {
+  headerStyle: {
+    width: deviceWidth,
+  },
 }
 
 export { MyHeader }
