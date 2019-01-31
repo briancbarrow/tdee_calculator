@@ -1,82 +1,88 @@
 import React, { Component } from 'react'
-import { Text, Picker, View } from 'react-native'
-
-import { CardSection, Button, Card, InputText, Spinner } from './common'
-import { Dropdown } from 'react-native-material-dropdown'
+import { Dimensions } from 'react-native'
+import {
+  Label,
+  Picker,
+  Form,
+  Item,
+  Input,
+  Icon,
+  Button,
+  Text,
+} from 'native-base'
 
 class Calc extends Component {
   state = {
     weight: '',
     height: '',
-    gender: 'Female',
+    gender: '',
     age: '',
   }
 
   render() {
     let genderData = [
       {
-        value: 'Male',
+        value: 'male',
       },
       {
-        value: 'Female',
+        value: 'female',
       },
     ]
     console.log('this.state', this.state)
     return (
-      <Card>
-        <CardSection>
-          <InputText
-            label="Height (cm)"
-            value={this.state.height}
-            placeholder="kg"
-            onChangeText={height => this.setState({ height })}
+      <Form>
+        <Item stackedLabel>
+          <Label>Height in kg</Label>
+          <Input
+            onChangeText={height => {
+              this.setState({ height })
+            }}
           />
-        </CardSection>
-        <CardSection>
-          <InputText
-            label="Weight (kg)"
-            value={this.state.weight}
-            placeholder="weight"
-            onChangeText={weight => this.setState({ weight })}
+        </Item>
+        <Item stackedLabel>
+          <Label>Weight in kg</Label>
+          <Input
+            onChangeText={weight => {
+              this.setState({ weight })
+            }}
           />
-        </CardSection>
-
-        <View style={styles.dropDownViewStyle}>
-          <Dropdown
-            containerStyle={styles.pickerContStyle}
-            label="Gender"
-            value={this.state.gender}
-            data={genderData}
+        </Item>
+        <Item picker>
+          <Picker
+            mode="dropdown"
+            iosIcon={<Icon name="arrow-down" />}
+            style={{ width: undefined }}
+            placeholder="Select your gender"
+            selectedValue={this.state.gender}
+            onValueChange={gender => {
+              this.setState({ gender })
+            }}
+          >
+            <Picker.Item label="Male" value="male" />
+            <Picker.Item label="Female" value="female" />
+          </Picker>
+        </Item>
+        <Item stackedLabel>
+          <Label>Age (years)</Label>
+          <Input
+            onChangeText={age => {
+              this.setState({ age })
+            }}
           />
-        </View>
-        <CardSection>
-          <InputText
-            label="Age (yrs)"
-            value={this.state.age}
-            placeholder="age"
-            onChangeText={age => this.setState({ age })}
-          />
-        </CardSection>
-      </Card>
+        </Item>
+        <Button block info style={styles.buttonStyle}>
+          <Text>Calculate</Text>
+        </Button>
+      </Form>
     )
   }
 }
 
+const deviceWidth = Dimensions.get('window').width - 10
+
 const styles = {
-  dropDownViewStyle: {
-    borderBottomWidth: 1,
-    padding: 5,
-    backgroundColor: '#fff',
-    flexDirection: 'row',
-    borderColor: '#ddd',
-    paddingTop: 0,
-  },
-  pickerContStyle: {
-    width: 100,
-    flex: 1,
-    borderColor: '#fff',
-    borderBottomColor: '#fff',
-    paddingLeft: 20,
+  buttonStyle: {
+    marginTop: 50,
   },
 }
 
