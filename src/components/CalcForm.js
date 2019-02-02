@@ -34,6 +34,7 @@ class CalcForm extends Component {
         <Item stackedLabel>
           <Label>Height in cm</Label>
           <Input
+            keyboardType="number-pad"
             onChangeText={height => {
               this.setState({ height })
             }}
@@ -42,6 +43,7 @@ class CalcForm extends Component {
         <Item stackedLabel>
           <Label>Weight in kg</Label>
           <Input
+            keyboardType="number-pad"
             onChangeText={weight => {
               this.setState({ weight })
             }}
@@ -65,6 +67,7 @@ class CalcForm extends Component {
         <Item stackedLabel>
           <Label>Age (years)</Label>
           <Input
+            keyboardType="number-pad"
             onChangeText={age => {
               this.setState({ age })
             }}
